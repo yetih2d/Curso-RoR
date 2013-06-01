@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body style = "background: #EEEEEE;">
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#">Curso RoR</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <% if user_signed_in? %>
+            Signed in as <%= current_user.email %>. Not you?
+            <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+          <% else %>
+            <li> <%= link_to "Sign up", new_user_registration_path %> </li>
+            <li> <%= link_to "Sign in", new_user_session_path %> </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<div class="container">
+  <div class="row">
+     <div class="span9"><%= yield %></div>
+     <div class="span3">
+        <h2>About me</h2>
+            <b>Curso Ruby On Rails</b> <br />
+            <b>Autor: Adrian Muñoz Barrera</b> <br />
+            <b>Fecha: 2013</b> <br />
+            <br />
+            <b>Modificaciones:</b> <br />
+            Añadido editor para los post y los comentarios (Tinymce). <br />
+            Añadida paginación a los posts (Kaminari). <br />
+            Mejorada la interfaz de usuario (Twitter Bootstrap). <br />
+            Modificación de los formularios (SimpleForm). <br />
+     </div>
+  </div>
+</div>
+
+
+</body>
+</html>
